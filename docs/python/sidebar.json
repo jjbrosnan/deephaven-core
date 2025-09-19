@@ -583,6 +583,10 @@
               {
                 "label": "Jupyter",
                 "path": "how-to-guides/jupyter.md"
+              },
+              {
+                "label": "Command line tools",
+                "path": "how-to-guides/python-cli-tools.md"
               }
             ]
           },
