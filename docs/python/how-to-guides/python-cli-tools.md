@@ -61,6 +61,7 @@ First, create the source code for the project. This guide calls the file `MyDeep
 ```python
 from deephaven_server import Server
 from typing_extensions import Annotated
+from deephaven_internal.jvm import _is_ready
 import typer
 
 def my_deephaven_cli(
@@ -87,7 +88,11 @@ def my_deephaven_cli(
             auth_arg,
         ],
     ).start()
+
+    while not _is_ready():
+        time.sleep(1)
     typer.echo(f"Deephaven server started on port {port}")
 
-    
+    from deephaven import time_table
+    tt = time_table("PT1s").update("RandomNumber = randomDouble(-1, 1)")
 ```
